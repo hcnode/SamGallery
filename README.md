@@ -1,3 +1,5 @@
+New: Now dockerized!
+
 Folder-gallery is a web application which provide folder explore and image gallery view
 
 # Features

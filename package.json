@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "bower install"
+    "postinstall": "./node_modules/.bin/bower --allow-root install"
   },
   "description": "folder explore and image gallery viewer",
   "homepage": "https://github.com/hcnode/folder-gallery",
   "dependencies": {
+    "bower": "^1.8.0",
     "config": "^1.17.1",
     "debug": "~2.1.1",
     "ejs": "^2.3.4",
@@ -17,7 +18,7 @@
     "express-session": "^1.13.0",
     "jade": "~1.9.2",
     "lodash": "^3.10.1",
-    "lwip": "0.0.8",
+    "lwip": "0.0.9",
     "serve-favicon": "~2.2.0",
     "serve-index": "hcnode/serve-index",
     "tar-fs": "^1.8.1"

@@ -12,8 +12,8 @@ var basic = require('express-authentication-basic');
 var app = express();
 
 // obtain config from /config/default.json
-var homePath = config.get("homePath"); // home path
-var thumbSize = config.get("thumbSize");// thumb size
+var homePath = process.env.HOME_PATH || config.get("homePath"); // home path
+var thumbSize = process.env.THUMB_SIZE || config.get("thumbSize");// thumb size
 
 
 app.set('views', path.join(__dirname, 'views'));

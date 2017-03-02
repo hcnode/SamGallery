@@ -1,5 +1,5 @@
 {
-  "homePath" : "/Users/harry/photo/",  // 配置web目录浏览器的本地路径
-  "thumbSize": 500 // 缩略图大小
+  "homePath" : "/data",
+  "thumbSize": 500
 }
 
