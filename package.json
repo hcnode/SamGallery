@@ -9,7 +9,7 @@
   "homepage": "https://github.com/hcnode/folder-gallery",
   "dependencies": {
     "config": "^1.17.1",
-    "debug": "~2.1.1",
+    "debug": "~4.2.0",
     "ejs": "^2.3.4",
     "express": "~4.12.2",
     "express-authentication": "^0.3.2",
