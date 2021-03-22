@@ -4,7 +4,7 @@ var fs = require('fs');
 var serveIndex = require('serve-index');
 var tar = require('tar-fs');
 var _ = require('lodash');
-var lwip = require('lwip');
+var jimp = require('jimp');
 var config = require('config');
 var session = require('express-session')
 var basic = require('express-authentication-basic');
@@ -59,7 +59,7 @@ app.get(/.*\/_tar$/, function (req, res, next) {
 
 
 // thumb image generater router
-app.get(/.*\/_thumb$/, function (req, res, next) {
+app.get(/.*\/_thumb$/, async function (req, res, next) {
 	var baseUrl = req.originalUrl;
 	var file = getPath(baseUrl, "_thumb");
 	var fullFile = homePath + file;
@@ -72,24 +72,27 @@ app.get(/.*\/_thumb$/, function (req, res, next) {
 		if(fs.existsSync(thumbFile)){
 			res.sendFile(thumbFile);
 		}else {
-			lwip.open(fullFile, function (err, image) {
-				var max = Math.max(image.width(), image.height());
-				if(max < thumbSize){
-					res.sendFile(fullFile);
-				}else {
-					var ratio = 1;
-					if(image.width() > image.height()){
-						ratio = thumbSize / image.width();
-					}else{
-						ratio = thumbSize / image.height();
-					}
-					image.scale(ratio, function (err, image) {
-						image.writeFile(thumbFile, function (err) {
-							res.sendFile(thumbFile);
-						});
-					});
-				}
-			})
+			const image = await jimp.read(fullFile);
+  			image.scaleToFit(thumbSize, thumbSize);
+			res.sendFile(image);
+// 			lwip.open(fullFile, function (err, image) {
+// 				var max = Math.max(image.width(), image.height());
+// 				if(max < thumbSize){
+// 					res.sendFile(fullFile);
+// 				}else {
+// 					var ratio = 1;
+// 					if(image.width() > image.height()){
+// 						ratio = thumbSize / image.width();
+// 					}else{
+// 						ratio = thumbSize / image.height();
+// 					}
+// 					image.scale(ratio, function (err, image) {
+// 						image.writeFile(thumbFile, function (err) {
+// 							res.sendFile(thumbFile);
+// 						});
+// 					});
+// 				}
+// 			})
 		}
 	}else{
 		next();
