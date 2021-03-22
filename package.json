@@ -17,7 +17,7 @@
     "express-session": "^1.13.0",
     "jade": "~1.9.2",
     "lodash": "^3.10.1",
-    "lwip": "0.0.8",
+    "jimp": "0.16.1",
     "serve-favicon": "~2.2.0",
     "serve-index": "hcnode/serve-index",
     "tar-fs": "^1.8.1"
