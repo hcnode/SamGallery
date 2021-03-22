@@ -74,7 +74,9 @@ app.get(/.*\/_thumb$/, async function (req, res, next) {
 		}else {
 			const image = await jimp.read(fullFile);
   			image.scaleToFit(thumbSize, thumbSize);
-			res.sendFile(image);
+			image.writeFile(thumbFile, function (err) {
+				res.sendFile(thumbFile);
+			});
 // 			lwip.open(fullFile, function (err, image) {
 // 				var max = Math.max(image.width(), image.height());
 // 				if(max < thumbSize){
